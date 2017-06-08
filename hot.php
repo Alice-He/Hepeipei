@@ -2,8 +2,13 @@
 error_reporting(E_ALL^E_NOTICE);
 include_once './inc/mysql.inc.php';
 include_once './inc/config.inc.php';
+include_once './inc/page.inc.php';
 $link=connect();
-$query="select * from content order by zan DESC ";
+$query="select count(*) from content";
+$count_reply=num($link, $query);
+$page_size=10;
+$page=page($count_reply,$page_size);
+$query="select * from content order by zan DESC {$page['limit']} ";
 $result=execute($link, $query);
 $query="select * from user_m where id = {$_SESSION['mid']}";
 $B=execute($link,$query);
@@ -72,7 +77,10 @@ while($data=mysqli_fetch_assoc($result)){
 	                <br class=\"clear\">
                 </div>";
 }
-
+if($count_reply>10) {
+    echo '<div style="width:100%;height:100px;"></div>';
+    echo "{$page['html']}";
+}
 echo'</div>
 		</div>
 	</div>

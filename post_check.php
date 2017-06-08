@@ -17,13 +17,13 @@ if(mb_strlen($_POST['content'])>500){
 if(isset($_POST['submit'])){
     $_POST=escape($link,$_POST);
     if(!empty($_POST['anonymous'])) {
-        $query = "insert into content(user_id,content,tag,time) values('0','{$_POST['content']}','{$_POST['tag']}',now())";
+        $query = "insert into content(user_id,content,time) values('0','{$_POST['content']}',now())";
     }else{
-        $query = "insert into content(user_id,content,tag,time) values('{$_SESSION['mid']}','{$_POST['content']}','{$_POST['tag']}',now())";
+        $query = "insert into content(user_id,content,time) values('{$_SESSION['mid']}','{$_POST['content']}',now())";
     }
     execute($link, $query);
     if(mysqli_affected_rows($link)==1){
-        echo"<script>alert ('Hello！{$_SESSION['name']}!');
+        echo"<script>alert ('发布成功!');
                  location.href='index.php';
                </script>";
     }else{

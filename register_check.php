@@ -45,7 +45,7 @@ if(isset($_POST['register'])){
             $result=execute($link,$query);
             $res=mysqli_fetch_assoc($result);
             $_SESSION['mid']=$res['id'];
-            echo"<script>alert ('Hello! {$_SESSION['name']}！');
+            echo"<script>alert ('注册成功！');
                  location.href='register.php';
                </script>";
         }

@@ -2,12 +2,15 @@
 error_reporting(E_ALL^E_NOTICE);
 include_once './inc/mysql.inc.php';
 include_once './inc/config.inc.php';
+include_once './inc/page.inc.php';
 $link=connect();
-$query="select * from content";
-$result=execute($link, $query);
 $query="select * from user_m where id = {$_SESSION['mid']}";
 $B=execute($link,$query);
 $b=mysqli_fetch_assoc($B);
+$query="select count(*) from content";
+$count_reply=num($link, $query);
+$page_size=10;
+$page=page($count_reply,$page_size);
 echo "<!DOCTYPE HTML>
 <html>
 <head>
@@ -47,6 +50,10 @@ echo"</div>
 	            <a href=\"post.php\" >发布秘密</a>
 	        </div>
             <div class=\"lists\">";
+//$i=($_GET['page']-1)*$page_size+1;
+$query="select * from content order by id asc {$page['limit']}";
+$result=execute($link, $query);
+
 while($data=mysqli_fetch_assoc($result)){
     echo"<div class=\"items\" id=\"id_secret_100322930\">
                     <div class=\"pbox\">
@@ -73,6 +80,10 @@ while($data=mysqli_fetch_assoc($result)){
                 </div>";
 }
 
+if($count_reply>10) {
+    echo '<div style="width:100%;height:100px;"></div>';
+    echo "{$page['html']}";
+}
             echo'</div>
 		</div>
 	</div>
