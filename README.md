@@ -10,3 +10,7 @@
 </ol>
 <h3>留言功能</h3>
 用户点击秘密头像或者“留言”即可对感兴趣的秘密留言
+<h4>注释</h4>
+"congig.inc.php","page.inc.php","mysql.inc.php"这三个文件原属于serct下的inc文件夹<br>
+css文件属于serct下的CSS文件夹<br>
+jpg文件属于serct/images/
