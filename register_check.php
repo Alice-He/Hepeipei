@@ -1,5 +1,4 @@
 <?php
-error_reporting(E_ALL^E_NOTICE);
 include_once './inc/mysql.inc.php';
 include_once './inc/config.inc.php';
 $link=connect();

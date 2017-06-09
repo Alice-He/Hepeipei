@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL^E_NOTICE);
-$error= isset($_GET['error']) ? $_GET['error'] : "";
 echo "<!DOCTYPE HTML>
 <html>
 <head>

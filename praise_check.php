@@ -1,7 +1,6 @@
 <?php
-error_reporting(E_ALL^E_NOTICE);
 include_once './inc/config.inc.php';
-include_once '/inc/mysql.inc.php';
+include_once './inc/mysql.inc.php';
 $link=connect();
 $post_id=$_GET['q'];
 $query="select * from content where id = {$post_id}";
